@@ -31,7 +31,7 @@ getPlantInfo();
 <template>
   <div class="container">
     <div class="header-card">
-      <h2> Plant It When </h2>
+      <h1> Plant It When </h1>
       <p> Simple, straightforward planting and harvesting calendars for common garden plants </p>
       <input type="text" placeholder="Search for a plant..." v-model="searchVal"/>
     </div>
@@ -77,7 +77,7 @@ getPlantInfo();
   margin: 1rem auto;
 }
 
-.header-card h2 {
+.header-card h1 {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0;
