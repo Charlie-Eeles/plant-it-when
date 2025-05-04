@@ -1,61 +1,27 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import PlantCard from "@/components/PlantCard.vue"
-import tomatoImg from "@/assets/tomato.jpg"
+const apiUrl = import.meta.env.VITE_API_URL;
 
-const plants = [
-  {
-    name: "Tomato",
-    category: "Vegetable",
-    growMonth: "March",
-    harvestTime: "July - September",
-    tempRange: "18°C - 27°C",
-    imageUrl: tomatoImg,
-  },
-  {
-    name: "Basil",
-    category: "Herb",
-    growMonth: "April",
-    harvestTime: "June - August",
-    tempRange: "20°C - 30°C",
-    imageUrl: tomatoImg,
-  },
-  {
-    name: "Strawberry",
-    category: "Fruit",
-    growMonth: "March",
-    harvestTime: "May - June",
-    tempRange: "15°C - 25°C",
-    imageUrl: tomatoImg,
-  },
-  {
-    name: "Carrot",
-    category: "Root Vegetable",
-    growMonth: "April",
-    harvestTime: "July - September",
-    tempRange: "15°C - 21°C",
-    imageUrl: tomatoImg,
-  },
-  {
-    name: "Sunflower",
-    category: "Flower",
-    growMonth: "April",
-    harvestTime: "August - September",
-    tempRange: "18°C - 30°C",
-    imageUrl: tomatoImg,
-  },
-]
+const plants = ref([]);
+
+async function getPlantInfo() {
+  try{
+    const res = await fetch(`${apiUrl}/plant-info`);
+    plants.value = await res.json();
+  } catch(err) {
+    console.error("An error occurred getting plant info", err);
+  }
+}
+getPlantInfo();
+
 </script>
 
 <template>
   <div class="container">
     <PlantCard
       v-for="plant in plants"
-      :name="plant.name"
-      :category="plant.category"
-      :growMonth="plant.growMonth"
-      :harvestTime="plant.harvestTime"
-      :tempRange="plant.tempRange"
-      :imageUrl="plant.imageUrl"
+      :plant="plant"
       class="plant-card"
     />
   </div>
