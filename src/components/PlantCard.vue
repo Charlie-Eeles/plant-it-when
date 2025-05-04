@@ -6,34 +6,37 @@ defineProps<{
     plantId: number,
     plantName: string,
     plantType: string,
-    whenToPlant: {
-      apr: boolean,
-      aug: boolean,
-      dec: boolean,
-      feb: boolean,
-      jan: boolean,
-      jul: boolean,
-      jun: boolean,
-      mar: boolean,
-      may: boolean,
-      nov: boolean,
-      oct: boolean,
-      sep: boolean
-    },
-    whenToHarvest: {
-      apr: boolean,
-      aug: boolean,
-      dec: boolean,
-      feb: boolean,
-      jan: boolean,
-      jul: boolean,
-      jun: boolean,
-      mar: boolean,
-      may: boolean,
-      nov: boolean,
-      oct: boolean,
-      sep: boolean
-    }
+    // whenToPlant: {
+    //   apr: boolean,
+    //   aug: boolean,
+    //   dec: boolean,
+    //   feb: boolean,
+    //   jan: boolean,
+    //   jul: boolean,
+    //   jun: boolean,
+    //   mar: boolean,
+    //   may: boolean,
+    //   nov: boolean,
+    //   oct: boolean,
+    //   sep: boolean
+    // },
+    // whenToHarvest: {
+    //   apr: boolean,
+    //   aug: boolean,
+    //   dec: boolean,
+    //   feb: boolean,
+    //   jan: boolean,
+    //   jul: boolean,
+    //   jun: boolean,
+    //   mar: boolean,
+    //   may: boolean,
+    //   nov: boolean,
+    //   oct: boolean,
+    //   sep: boolean
+    // }
+    //TODO: Remove explicit any
+    whenToPlant: any,
+    whenToHarvest: any,
   }
 }>()
 

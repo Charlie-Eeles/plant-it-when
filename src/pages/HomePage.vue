@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, type Ref } from 'vue'
 import PlantCard from "@/components/PlantCard.vue"
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const plants = ref([]);
+const plants: Ref<any> = ref([]);
 const searchVal = ref("");
 
 const filteredPlants = computed(() => {
@@ -11,7 +11,7 @@ const filteredPlants = computed(() => {
   if(!val?.length) return [];
 
   if(searchVal.value) {
-    val = val.filter((plant) => plant.plantName.toLowerCase().includes(searchVal.value.toLowerCase()));
+    val = val.filter((plant: any) => plant.plantName.toLowerCase().includes(searchVal.value.toLowerCase()));
   }
 
   return val;
