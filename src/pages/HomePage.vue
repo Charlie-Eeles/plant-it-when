@@ -1,26 +1,44 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import PlantCard from "@/components/PlantCard.vue"
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const plants = ref([]);
+const searchVal = ref("");
+
+const filteredPlants = computed(() => {
+  let val = plants.value;
+  if(!val?.length) return [];
+
+  if(searchVal.value) {
+    val = val.filter((plant) => plant.plantName.toLowerCase().includes(searchVal.value.toLowerCase()));
+  }
+
+  return val;
+})
 
 async function getPlantInfo() {
-  try{
+  try {
     const res = await fetch(`${apiUrl}/plant-info`);
     plants.value = await res.json();
-  } catch(err) {
+  } catch (err) {
     console.error("An error occurred getting plant info", err);
   }
 }
 getPlantInfo();
-
 </script>
 
 <template>
   <div class="container">
+    <div class="header-card">
+      <h2> Plant It When </h2>
+      <p> Simple, straightforward planting and harvesting calendars for common garden plants </p>
+      <input type="text" placeholder="Search for a plant..." v-model="searchVal"/>
+    </div>
+
     <PlantCard
-      v-for="plant in plants"
+      v-for="plant in filteredPlants"
+      :key="plant.id"
       :plant="plant"
       class="plant-card"
     />
@@ -36,6 +54,37 @@ getPlantInfo();
   flex-direction: column;
 }
 
+.header-card {
+  padding: 1rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  background-color: #014421;
+  flex-direction: column;
+}
+
+.header-card input {
+  width: 50%;
+  padding: 0.5rem;
+  border: 0;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.header-card h2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  color: white;
+}
+.header-card p {
+  margin: 1rem auto;
+  color: white;
+  width: 90%;
+}
+
 .plant-card {
   width: 100%;
 }
@@ -46,7 +95,19 @@ getPlantInfo();
   }
 
   .plant-card {
-    width: 95%;
+    width: 100%;
+  }
+
+  .header-card input,
+  .header-card p {
+    width: 75%;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-card input,
+  .header-card p {
+    width: 90%;
   }
 }
 </style>
