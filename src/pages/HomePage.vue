@@ -40,13 +40,13 @@ getPlantInfo();
   width: 100%;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   .container {
     width: 90%;
   }
 
   .plant-card {
-    width: 100%;
+    width: 95%;
   }
 }
 </style>
