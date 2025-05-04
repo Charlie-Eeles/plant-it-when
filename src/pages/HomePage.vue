@@ -35,6 +35,10 @@ getPlantInfo();
       <p> Simple, straightforward planting and harvesting calendars for common garden plants </p>
       <input type="text" placeholder="Search for a plant..." v-model="searchVal"/>
     </div>
+    <div class="key-bar">
+      <span>🌱 Plant</span>
+      <span>🌾 Harvest</span>
+    </div>
 
     <PlantCard
       v-for="plant in filteredPlants"
@@ -70,7 +74,7 @@ getPlantInfo();
   outline: none;
   font-size: 1rem;
   border-radius: 5px;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 
 .header-card h2 {
@@ -87,6 +91,27 @@ getPlantInfo();
 
 .plant-card {
   width: 100%;
+}
+
+.key-bar {
+  position: sticky;
+  top: 0;
+  background: #014421;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #014421;
+  font-size: 0.9rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.key-bar span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 @media (max-width: 1000px) {

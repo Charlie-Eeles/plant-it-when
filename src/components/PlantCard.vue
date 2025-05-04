@@ -85,7 +85,6 @@ function determinePlantTypeEmoji(plantType: string) {
 <style scoped>
 .plant-card {
   display: flex;
-  border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
   width: 500px;
