@@ -37,7 +37,7 @@ getPlantInfo();
   <div class="container">
     <div class="header-card">
       <h1> Plant It When </h1>
-      <p> Simple, straightforward planting and harvesting calendars for common garden plants </p>
+      <p> Simple, straightforward planting and harvesting calendars for common garden plants. </p>
       <input type="text" placeholder="Search for a plant..." v-model="searchVal"/>
       <div class="month-filter">
         <span class="month-label">What to plant in:</span>
@@ -69,6 +69,7 @@ getPlantInfo();
       :plant="plant"
       class="plant-card"
     />
+    <p v-if="!filteredPlants.length" class="no-results">Sorry, no plants found matching filters.</p>
   </div>
 </template>
 
@@ -106,6 +107,7 @@ getPlantInfo();
   margin-bottom: 0;
   color: white;
 }
+
 .header-card p {
   margin: 1rem auto;
   color: white;
@@ -163,6 +165,12 @@ getPlantInfo();
   background: white;
   color: #014421;
   cursor: pointer;
+}
+
+.no-results {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
 }
 
 @media (max-width: 1000px) {
