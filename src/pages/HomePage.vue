@@ -87,6 +87,7 @@ getPlantInfo();
   margin: 1rem auto;
   color: white;
   width: 90%;
+  text-align: center;
 }
 
 .plant-card {
