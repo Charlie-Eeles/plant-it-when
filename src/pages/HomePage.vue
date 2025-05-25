@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, type Ref } from 'vue'
 import PlantCard from "@/components/PlantCard.vue"
-const apiUrl = import.meta.env.VITE_API_URL;
+import plantInfo from "@/assets/plant-info.json"
 
-const plants: Ref<any> = ref([]);
+const plants: Ref<any> = ref(plantInfo);
 const searchVal = ref("");
 const monthFilter = ref("all");
 
@@ -22,15 +22,6 @@ const filteredPlants = computed(() => {
   return val;
 })
 
-async function getPlantInfo() {
-  try {
-    const res = await fetch(`${apiUrl}/plant-info`);
-    plants.value = await res.json();
-  } catch (err) {
-    console.error("An error occurred getting plant info", err);
-  }
-}
-getPlantInfo();
 </script>
 
 <template>
