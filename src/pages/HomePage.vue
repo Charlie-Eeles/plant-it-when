@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, type Ref } from 'vue'
-import PlantCard from "@/components/PlantCard.vue"
-import plantInfo from "@/assets/plant-info.json"
-import type { MonthKey, Plant } from '@/types';
+import { ref, computed, type Ref } from "vue";
+import PlantCard from "@/components/PlantCard.vue";
+import plantInfo from "@/assets/plant-info.json";
+import type { MonthKey, Plant } from "@/types";
 
 const plants: Ref<Plant[]> = ref(plantInfo);
 const searchVal = ref("");
@@ -10,27 +10,28 @@ const monthFilter = ref("all");
 
 const filteredPlants = computed(() => {
   let val = plants.value;
-  if(!val?.length) return [];
+  if (!val?.length) return [];
 
-  if(monthFilter.value !== "all") {
+  if (monthFilter.value !== "all") {
     val = val.filter((plant: Plant) => plant.whenToPlant[monthFilter.value as MonthKey]);
   }
 
-  if(searchVal.value) {
-    val = val.filter((plant: Plant) => plant.plantName.toLowerCase().includes(searchVal.value.toLowerCase()));
+  if (searchVal.value) {
+    val = val.filter((plant: Plant) =>
+      plant.plantName.toLowerCase().includes(searchVal.value.toLowerCase()),
+    );
   }
 
   return val;
-})
-
+});
 </script>
 
 <template>
   <div class="container">
     <div class="header-card">
-      <h1> Plant It When </h1>
-      <p> Simple, straightforward planting and harvesting calendars for common garden plants. </p>
-      <input type="text" placeholder="Search for a plant..." v-model="searchVal"/>
+      <h1>Plant It When</h1>
+      <p>Simple, straightforward planting and harvesting calendars for common garden plants.</p>
+      <input type="text" placeholder="Search for a plant..." v-model="searchVal" />
       <div class="month-filter">
         <span class="month-label">What to plant in:</span>
         <select id="selectMonth" name="selectMonth" v-model="monthFilter">

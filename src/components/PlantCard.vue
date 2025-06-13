@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { MonthKey, Plant } from "@/types";
-import { defineProps } from "vue"
+import { defineProps } from "vue";
 
 defineProps<{
-  plant: Plant
-}>()
+  plant: Plant;
+}>();
 
 function determinePlantTypeEmoji(plantType: string) {
   const type = plantType.toLowerCase();
@@ -19,34 +19,52 @@ function determinePlantTypeEmoji(plantType: string) {
 <template>
   <div class="plant-card">
     <div class="plant-info">
-      <h2 class="plant-name">{{determinePlantTypeEmoji(plant.plantType)}} {{ plant.plantName }} - <small> {{ plant.plantType }}</small></h2>
+      <h2 class="plant-name">
+        {{ determinePlantTypeEmoji(plant.plantType) }} {{ plant.plantName }} -
+        <small> {{ plant.plantType }}</small>
+      </h2>
 
       <div class="calendar">
         <div class="calendar-row">
-          <div class="calendar-header" v-for="month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']" :key="month">
+          <div
+            class="calendar-header"
+            v-for="month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']"
+            :key="month"
+          >
             {{ month }}
           </div>
         </div>
         <div class="calendar-row">
-          <div class="calendar-value" v-for="month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']" :key="month">
-            {{plant.whenToPlant[month.toLowerCase() as MonthKey] ? "🌱" : ""}}
-            {{plant.whenToHarvest[month.toLowerCase() as MonthKey] ? "🌾" : ""}}
+          <div
+            class="calendar-value"
+            v-for="month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']"
+            :key="month"
+          >
+            {{ plant.whenToPlant[month.toLowerCase() as MonthKey] ? "🌱" : "" }}
+            {{ plant.whenToHarvest[month.toLowerCase() as MonthKey] ? "🌾" : "" }}
           </div>
         </div>
 
         <div class="calendar-row">
-          <div class="calendar-header" v-for="month in ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']" :key="month">
+          <div
+            class="calendar-header"
+            v-for="month in ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
+            :key="month"
+          >
             {{ month }}
           </div>
         </div>
         <div class="calendar-row">
-          <div class="calendar-value" v-for="month in ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']" :key="month">
-            {{plant.whenToPlant[month.toLowerCase() as MonthKey] ? "🌱" : ""}}
-            {{plant.whenToHarvest[month.toLowerCase() as MonthKey] ? "🌾" : ""}}
+          <div
+            class="calendar-value"
+            v-for="month in ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']"
+            :key="month"
+          >
+            {{ plant.whenToPlant[month.toLowerCase() as MonthKey] ? "🌱" : "" }}
+            {{ plant.whenToHarvest[month.toLowerCase() as MonthKey] ? "🌾" : "" }}
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>

@@ -21,4 +21,3 @@ export interface Plant {
   whenToPlant: MonthFlags;
   whenToHarvest: MonthFlags;
 }
-
