@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView } from "vue-router";
 </script>
 
 <template>
@@ -15,5 +15,4 @@ body {
   color: #333333;
   font-family: "Roboto", sans-serif;
 }
-
 </style>
