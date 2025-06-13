@@ -1,43 +1,9 @@
 <script setup lang="ts">
+import type { MonthKey, Plant } from "@/types";
 import { defineProps } from "vue"
 
 defineProps<{
-  plant:  {
-    plantId: number,
-    plantName: string,
-    plantType: string,
-    // whenToPlant: {
-    //   apr: boolean,
-    //   aug: boolean,
-    //   dec: boolean,
-    //   feb: boolean,
-    //   jan: boolean,
-    //   jul: boolean,
-    //   jun: boolean,
-    //   mar: boolean,
-    //   may: boolean,
-    //   nov: boolean,
-    //   oct: boolean,
-    //   sep: boolean
-    // },
-    // whenToHarvest: {
-    //   apr: boolean,
-    //   aug: boolean,
-    //   dec: boolean,
-    //   feb: boolean,
-    //   jan: boolean,
-    //   jul: boolean,
-    //   jun: boolean,
-    //   mar: boolean,
-    //   may: boolean,
-    //   nov: boolean,
-    //   oct: boolean,
-    //   sep: boolean
-    // }
-    //TODO: Remove explicit any
-    whenToPlant: any,
-    whenToHarvest: any,
-  }
+  plant: Plant
 }>()
 
 function determinePlantTypeEmoji(plantType: string) {
@@ -63,8 +29,8 @@ function determinePlantTypeEmoji(plantType: string) {
         </div>
         <div class="calendar-row">
           <div class="calendar-value" v-for="month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']" :key="month">
-            {{plant.whenToPlant[month.toLowerCase()] ? "🌱" : ""}}
-            {{plant.whenToHarvest[month.toLowerCase()] ? "🌾" : ""}}
+            {{plant.whenToPlant[month.toLowerCase() as MonthKey] ? "🌱" : ""}}
+            {{plant.whenToHarvest[month.toLowerCase() as MonthKey] ? "🌾" : ""}}
           </div>
         </div>
 
@@ -75,8 +41,8 @@ function determinePlantTypeEmoji(plantType: string) {
         </div>
         <div class="calendar-row">
           <div class="calendar-value" v-for="month in ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']" :key="month">
-            {{plant.whenToPlant[month.toLowerCase()] ? "🌱" : ""}}
-            {{plant.whenToHarvest[month.toLowerCase()] ? "🌾" : ""}}
+            {{plant.whenToPlant[month.toLowerCase() as MonthKey] ? "🌱" : ""}}
+            {{plant.whenToHarvest[month.toLowerCase() as MonthKey] ? "🌾" : ""}}
           </div>
         </div>
       </div>

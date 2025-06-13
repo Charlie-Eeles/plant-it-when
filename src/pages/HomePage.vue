@@ -2,8 +2,9 @@
 import { ref, computed, type Ref } from 'vue'
 import PlantCard from "@/components/PlantCard.vue"
 import plantInfo from "@/assets/plant-info.json"
+import type { MonthKey, Plant } from '@/types';
 
-const plants: Ref<any> = ref(plantInfo);
+const plants: Ref<Plant[]> = ref(plantInfo);
 const searchVal = ref("");
 const monthFilter = ref("all");
 
@@ -12,11 +13,11 @@ const filteredPlants = computed(() => {
   if(!val?.length) return [];
 
   if(monthFilter.value !== "all") {
-    val = val.filter((plant: any) => plant.whenToPlant[monthFilter.value]);
+    val = val.filter((plant: Plant) => plant.whenToPlant[monthFilter.value as MonthKey]);
   }
 
   if(searchVal.value) {
-    val = val.filter((plant: any) => plant.plantName.toLowerCase().includes(searchVal.value.toLowerCase()));
+    val = val.filter((plant: Plant) => plant.plantName.toLowerCase().includes(searchVal.value.toLowerCase()));
   }
 
   return val;
@@ -56,7 +57,7 @@ const filteredPlants = computed(() => {
 
     <PlantCard
       v-for="plant in filteredPlants"
-      :key="plant.id"
+      :key="plant.plantId"
       :plant="plant"
       class="plant-card"
     />
